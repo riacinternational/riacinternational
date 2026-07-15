@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosa Isabel Álvarez del Castillo — Academic Ressources Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:        #0F2A4A;   /* deep navy — primary */
+  --navy-dark:   #081C33;   /* darkest navy */
+  --blue:        #2E5C8F;   /* mid steel blue */
+  --blue-soft:   #7FA6CC;   /* soft blue */
+  --blue-pale:   #E9F1F8;   /* pale blue backgrounds */
+  --blue-mist:   #F5F8FC;   /* mist background */
+  --gold:        #C9A227;   /* discreet accent for fine rules */
+  --ink:         #1A2430;
+  --mid:         #52616F;
+  --border:      #D8E2EC;
+  --white:       #FFFFFF;
+  --nav-height: 88px;
+  --exp-sidebar: 380px;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
+
+/* ════ NAV ════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  background: var(--navy);
+  display: flex;
+  align-items: stretch;
+  z-index: 100;
+  border-bottom: 3px solid var(--gold);
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 36px;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.nav-brand .brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav-brand .brand-role {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-soft);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding-right: 24px;
+  overflow-x: auto;
+}
+
+.nav-center a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+  transition: color 0.18s, background 0.18s;
+  letter-spacing: 0.02em;
+}
+
+.nav-center a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+.nav-center a.nav-active {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-center a.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--blue-soft);
+}
+
+/* ════ PAGES ════ */
+.page {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0; right: 0; bottom: 0;
+  overflow-y: auto;
+  background: var(--white);
+  animation: pageFade 0.28s ease;
+}
+.page.active { display: block; }
+#page-home.active, #page-contact.active { display: flex; }
+
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page { animation: none; }
+}
+
+/* ════ HOME ════ */
+#page-home {
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(120deg, var(--blue-mist) 0%, var(--white) 55%),
+    var(--white);
+  position: relative;
+}
+#page-home::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 38%;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 100%);
+  clip-path: polygon(0 0, 100% 0, 72% 100%, 0 100%);
+}
+
+.home-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  align-items: center;
+  gap: 72px;
+  padding: 60px 80px;
+  max-width: 1150px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.home-photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.photo-frame {
+  width: 260px;
+  height: 320px;
+  overflow: hidden;
+  background: var(--blue-pale);
+  border: 6px solid #fff;
+  box-shadow: 0 18px 45px rgba(8,28,51,0.35);
+}
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.home-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+.home-langs {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue-pale);
+  text-align: center;
+}
+
+.home-text-content {
+  background: rgba(255,255,255,0.92);
+  padding: 48px 50px;
+  border-left: 4px solid var(--navy);
+  box-shadow: 0 6px 28px rgba(15,42,74,0.08);
+}
+
+.home-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.home-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.home-desc p {
+  font-size: 0.94rem;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 12px;
+  max-width: 560px;
+}
+.home-desc strong { color: var(--navy); font-weight: 600; }
+
+.home-cta {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: opacity 0.18s, transform 0.18s;
+}
+.btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-navy   { background: var(--navy); color: #fff; }
+.btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+
+/* ════ SECTION SHELL ════ */
+.section-shell {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 70px 60px 90px;
+}
+.section-header { margin-bottom: 48px; }
+.section-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.15;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--gold);
+  margin-top: 16px;
+}
+
+/* ════ EXPERIENCE ════ */
+.experience-layout {
+  display: grid;
+  grid-template-columns: var(--exp-sidebar) 1fr;
+  min-height: calc(100vh - var(--nav-height));
+}
+
+.exp-sidebar {
+  border-right: 1px solid var(--border);
+  padding: 44px 0;
+  background: var(--blue-mist);
+  position: relative;
+}
+.exp-sidebar::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 60px; bottom: 60px;
+  width: 2px;
+  background: var(--border);
+}
+
+.exp-item {
+  padding: 15px 22px 15px 54px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.18s;
+}
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 22px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2.5px solid var(--blue-soft);
+  transition: all 0.18s;
+}
+.exp-item:hover { background: rgba(46,92,143,0.06); }
+.exp-item.active { background: var(--white); box-shadow: inset 4px 0 0 var(--navy); }
+.exp-item.active::before { background: var(--navy); border-color: var(--navy); }
+
+.exp-item .exp-dates {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+}
+.exp-item .exp-role {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 3px 0 1px;
+}
+.exp-item .exp-org {
+  font-size: 0.8rem;
+  color: var(--mid);
+}
+
+.exp-detail { padding: 56px 64px; max-width: 760px; }
+.exp-detail-panel { display: none; animation: pageFade 0.25s ease; }
+.exp-detail-panel.active { display: block; }
+
+.exp-detail h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.exp-detail .detail-org {
+  font-size: 0.95rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+.exp-detail .detail-dates {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 26px;
+}
+.exp-detail ul { list-style: none; }
+.exp-detail li {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--mid);
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.exp-detail li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 11px;
+  width: 9px; height: 2px;
+  background: var(--gold);
+}
+
+.detail-tags { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+.detail-tags span {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  background: var(--blue-pale);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* ════ EDUCATION ════ */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+.edu-card {
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--navy);
+  padding: 28px 30px;
+  background: var(--white);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.edu-card:hover { box-shadow: 0 10px 30px rgba(15,42,74,0.10); transform: translateY(-2px); }
+.edu-card.cert { border-top-color: var(--blue-soft); }
+.edu-card .edu-year {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+}
+.edu-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 8px 0 4px;
+  line-height: 1.3;
+}
+.edu-card .edu-inst { font-size: 0.86rem; color: var(--mid); line-height: 1.5; }
+
+.edu-subhead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 52px 0 22px;
+}
+
+/* ════ STRENGTHS ════ */
+.strengths-intro { font-size: 0.95rem; color: var(--mid); line-height: 1.8; max-width: 640px; margin-bottom: 40px; }
+
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+.strength-card {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 130%);
+  color: #fff;
+  padding: 26px 18px;
+  text-align: center;
+}
+.strength-card .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  color: var(--blue-soft);
+}
+.strength-card h3 { font-size: 1.15rem; font-weight: 600; margin: 6px 0 8px; color: #fff; }
+.strength-card p { font-size: 0.74rem; line-height: 1.55; color: rgba(255,255,255,0.78); }
+
+.lang-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.lang-card {
+  border: 1px solid var(--border);
+  padding: 24px 26px;
+  background: var(--blue-mist);
+}
+.lang-card h3 { font-size: 1.2rem; color: var(--navy); font-weight: 600; }
+.lang-card .lang-level { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); font-weight: 600; margin: 4px 0 10px; }
+.lang-bar { height: 5px; background: var(--border); overflow: hidden; }
+.lang-bar span { display: block; height: 100%; background: var(--navy); }
+
+/* ════ MY JOURNEY ════ */
+.journey-intro { font-size: 0.95rem; color: var(--mid); line-height: 1.8; max-width: 640px; margin-bottom: 44px; }
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.journey-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--blue-pale);
+  aspect-ratio: 4 / 3;
+}
+.journey-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.journey-card:hover img { transform: scale(1.05); }
+.journey-card .journey-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 18px 14px;
+  background: linear-gradient(to top, rgba(8,28,51,0.88), rgba(8,28,51,0));
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.journey-card.wide { grid-column: span 2; aspect-ratio: auto; }
+
+/* ════ CONTACT ════ */
+#page-contact {
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+}
+.contact-inner {
+  text-align: center;
+  max-width: 560px;
+  padding: 40px;
+}
+.contact-inner .section-eyebrow { color: var(--blue-soft); }
+.contact-inner h2 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.contact-inner p { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.8; margin-bottom: 34px; }
+
+.contact-lines { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 13px 30px;
+  min-width: 340px;
+  justify-content: center;
+  transition: background 0.18s, border-color 0.18s;
+}
+.contact-line:hover { background: rgba(255,255,255,0.08); border-color: var(--blue-soft); }
+.contact-note {
+  margin-top: 30px;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-soft);
+}
+
+/* ════ RESPONSIVE ════ */
+@media (max-width: 960px) {
+  html, body { overflow: auto; }
+  nav { position: fixed; height: auto; flex-direction: column; align-items: stretch; }
+  .nav-brand { padding: 12px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .nav-center { justify-content: flex-start; padding: 0 8px; }
+  .nav-center a { padding: 12px 12px; font-size: 0.82rem; }
+  .page { position: static; margin-top: 140px; overflow: visible; }
+  .page.active { display: block; }
+  #page-home.active, #page-contact.active { display: block; }
+  #page-home::before { display: none; }
+  .home-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+  .home-name, .home-langs { color: var(--navy); }
+  .home-text-content { padding: 30px 24px; }
+  .experience-layout { grid-template-columns: 1fr; }
+  .exp-sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+  .exp-detail { padding: 34px 24px; }
+  .section-shell { padding: 46px 24px 60px; }
+  .edu-grid, .lang-row { grid-template-columns: 1fr; }
+  .strengths-grid { grid-template-columns: 1fr 1fr; }
+  .journey-grid { grid-template-columns: 1fr; }
+  .journey-card.wide { grid-column: span 1; }
+  #page-contact { padding: 60px 0; }
+  .contact-line { min-width: 0; width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <span class="brand-name">Rosa Isabel Álvarez del Castillo</span>
+    <span class="brand-role">Academic Ressources Specialist</span>
+  </div>
+  <div class="nav-center" id="nav-center-links">
+    <a href="#" id="nav-home"       onclick="goTo('home');return false;" class="nav-active">Home</a>
+    <a href="#" id="nav-experience" onclick="goTo('experience');return false;">Experience</a>
+    <a href="#" id="nav-education"  onclick="goTo('education');return false;">Education &amp; Certifications</a>
+    <a href="#" id="nav-strengths"  onclick="goTo('strengths');return false;">Strengths &amp; Languages</a>
+    <a href="#" id="nav-journey"    onclick="goTo('journey');return false;">My Journey</a>
+    <a href="#" id="nav-contact"    onclick="goTo('contact');return false;">Contact</a>
+  </div>
+</nav>
+
+<!-- ════ HOME ════ -->
+<div class="page active" id="page-home">
+  <div class="home-inner">
+    <div class="home-photo-col">
+      <div class="photo-frame">
+        <img src="isa.jpg" alt="Rosa Isabel Álvarez del Castillo">
+      </div>
+      <div class="home-name">Rosa Isabel Álvarez del Castillo</div>
+      <div class="home-langs">Español · Français · English</div>
+    </div>
+    <div class="home-text-content">
+      <div class="home-eyebrow">Vaud, Switzerland · Swiss Work Permit L</div>
+      <h1 class="home-tagline">Academic Ressources Specialist</h1>
+      <div class="home-desc">
+        <p>I design and coordinate <strong>academic programmes, training curricula and student support systems</strong> in international, multicultural environments — from a Swiss boarding school with students of 30+ nationalities to volunteer networks spanning three countries.</p>
+        <p>With a <strong>Master's degree in Social Development</strong> and more than 12 years of experience in education, programme coordination and human development, I bring structure, warmth and measurable results to every institution I serve.</p>
+      </div>
+      <div class="home-cta">
+        <a href="#" class="btn btn-navy" onclick="goTo('experience');return false;">View experience</a>
+        <a href="#" class="btn btn-outline" onclick="goTo('contact');return false;">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ EXPERIENCE ════ -->
+<div class="page" id="page-experience">
+  <div class="experience-layout">
+    <div class="exp-sidebar">
+      <div class="exp-item active" onclick="showExp(0, this)">
+        <div class="exp-dates">2025 – 2026 · Switzerland</div>
+        <div class="exp-role">Formation Coordinator &amp; Social Projects Teacher</div>
+        <div class="exp-org">Le Chatelard International Boarding School</div>
+      </div>
+      <div class="exp-item" onclick="showExp(1, this)">
+        <div class="exp-dates">2024 · France</div>
+        <div class="exp-role">Customer Service Manager</div>
+        <div class="exp-org">Botanic — Annecy</div>
+      </div>
+      <div class="exp-item" onclick="showExp(2, this)">
+        <div class="exp-dates">2021 – 2022 · Dominican Republic</div>
+        <div class="exp-role">VIP Sales Counsellor &amp; Events Coordinator</div>
+        <div class="exp-org">Hard Rock Hotel &amp; Casino — Punta Cana</div>
+      </div>
+      <div class="exp-item" onclick="showExp(3, this)">
+        <div class="exp-dates">2016 – 2021 · Mexico · Guatemala · Panama</div>
+        <div class="exp-role">Regional Volunteer Coordinator &amp; Training Designer</div>
+        <div class="exp-org">Good Deeds Day International</div>
+      </div>
+      <div class="exp-item" onclick="showExp(4, this)">
+        <div class="exp-dates">2015 – 2020 · Latin America</div>
+        <div class="exp-role">Corporate Training Programme Coordinator</div>
+        <div class="exp-org">AdGentis Latinoamérica</div>
+      </div>
+      <div class="exp-item" onclick="showExp(5, this)">
+        <div class="exp-dates">2014 – 2022 · Mexico</div>
+        <div class="exp-role">Co-Founder &amp; Programme Director</div>
+        <div class="exp-org">Go Share Movement</div>
+      </div>
+      <div class="exp-item" onclick="showExp(6, this)">
+        <div class="exp-dates">2012 – 2021 · Mexico</div>
+        <div class="exp-role">Senior Consultant — Women's Leadership</div>
+        <div class="exp-org">ProSociedad Social Consultancy</div>
+      </div>
+    </div>
+
+    <div class="exp-detail">
+      <div class="exp-detail-panel active">
+        <h2>Formation Coordinator &amp; Social Projects Teacher</h2>
+        <div class="detail-org">Le Chatelard International Boarding School — Les Avants / Montreux, Switzerland</div>
+        <div class="detail-dates">2025 – 2026</div>
+        <ul>
+          <li>Designed and delivered the core values and social engagement programme for 160 international students aged 12–18, representing more than 30 nationalities.</li>
+          <li>Provided individual and group mentoring, supporting students' personal development and integration.</li>
+          <li>Coordinated daily with faculty, school leadership and external partners to align academic and formative objectives.</li>
+        </ul>
+        <div class="detail-tags"><span>Programme design</span><span>Student support</span><span>Faculty liaison</span><span>Intercultural education</span></div>
+      </div>
+
+      <div class="exp-detail-panel">
+        <h2>Customer Service Manager</h2>
+        <div class="detail-org">Botanic — Annecy, France</div>
+        <div class="detail-dates">2024</div>
+        <ul>
+          <li>Led a team of 8, implementing performance measurement tools and a structured professional development framework.</li>
+          <li>Designed staff motivation and leadership initiatives that strengthened team engagement and service quality.</li>
+          <li>Drove a customer loyalty strategy that achieved more than 3,000 new members in six months.</li>
+        </ul>
+        <div class="detail-tags"><span>Team leadership</span><span>KPIs &amp; measurement</span><span>Staff development</span></div>
+      </div>
+
+      <div class="exp-detail-panel">
+        <h2>VIP Sales Counsellor &amp; Events Coordinator</h2>
+        <div class="detail-org">Hard Rock Hotel &amp; Casino — Punta Cana, Dominican Republic</div>
+        <div class="detail-dates">2021 – 2022</div>
+        <ul>
+          <li>Managed membership sales and VIP experiences for international luxury guests in Spanish, French and English.</li>
+          <li>Coordinated private bookings and exclusive events, ensuring impeccable cross-cultural client relations.</li>
+          <li>Handled loyalty programme management and service recovery for high-value guests.</li>
+        </ul>
+        <div class="detail-tags"><span>Luxury hospitality</span><span>Trilingual service</span><span>VIP events</span></div>
+      </div>
+
+      <div class="exp-detail-panel">
+        <h2>Regional Volunteer Coordinator &amp; Training Programme Designer</h2>
+        <div class="detail-org">Good Deeds Day International (Ruach Tova Foundation) — Mexico, Guatemala, Panama</div>
+        <div class="detail-dates">2016 – 2021</div>
+        <ul>
+          <li>Designed comprehensive training curricula for 700+ international volunteers annually: social awareness, cultural context, risk prevention, empathy &amp; leadership, and assertive communication.</li>
+          <li>Coordinated large-scale experiential events across three countries, developing manuals, evaluation tools and KPI reporting frameworks.</li>
+          <li>Recognised as an official trainer by SEDESOL / Indesol (Mexican federal social development agencies).</li>
+        </ul>
+        <div class="detail-tags"><span>Curriculum design</span><span>700+ volunteers</span><span>3 countries</span><span>KPI reporting</span></div>
+      </div>
+
+      <div class="exp-detail-panel">
+        <h2>Corporate Training Programme Coordinator</h2>
+        <div class="detail-org">AdGentis Latinoamérica — Mexico &amp; Latin America</div>
+        <div class="detail-dates">2015 – 2020</div>
+        <ul>
+          <li>Designed and coordinated leadership, soft skills and teambuilding programmes for C-level executives of multinational companies across six Mexican states.</li>
+          <li>Managed end-to-end logistics, facilitation and post-programme evaluation of corporate learning experiences.</li>
+        </ul>
+        <div class="detail-tags"><span>Executive education</span><span>Soft skills</span><span>Programme logistics</span></div>
+      </div>
+
+      <div class="exp-detail-panel">
+        <h2>Co-Founder &amp; Programme Director — Social Entrepreneurship</h2>
+        <div class="detail-org">Go Share Movement — Jalisco, Mexico</div>
+        <div class="detail-dates">2014 – 2022</div>
+        <ul>
+          <li>Founded and directed a national social entrepreneurship network: 65+ NGOs and 25+ community development programmes aligned with the UN SDG 2030 framework.</li>
+          <li>Introduced GRI-aligned impact reporting across the network's programmes.</li>
+          <li>Recruited, trained and mentored programme facilitators and community leaders; built partnerships with government, corporates and international NGOs.</li>
+        </ul>
+        <div class="detail-tags"><span>65+ NGOs</span><span>UN SDGs</span><span>GRI reporting</span><span>Partnerships</span></div>
+      </div>
+
+      <div class="exp-detail-panel">
+        <h2>Senior Consultant — Women's Leadership &amp; Community Development</h2>
+        <div class="detail-org">ProSociedad Social Consultancy — Guadalajara, Mexico</div>
+        <div class="detail-dates">2012 – 2021</div>
+        <ul>
+          <li>Designed and delivered a Women's Leadership Programme for 250+ female entrepreneurs: commercial skills, sales techniques, soft skills, time management, self-awareness and strengths identification.</li>
+          <li>Adapted every module to the social and cultural context of central Mexico, in partnership with UN Women and the Jalisco Secretariat.</li>
+          <li>Supported institutional development and fundraising strategy for civil society organisations.</li>
+        </ul>
+        <div class="detail-tags"><span>Women's leadership</span><span>250+ entrepreneurs</span><span>UN Women</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ EDUCATION ════ -->
+<div class="page" id="page-education">
+  <div class="section-shell">
+    <div class="section-header">
+      <div class="section-eyebrow">Academic Foundation</div>
+      <h2 class="section-title">Education &amp; Certifications</h2>
+    </div>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2015 – 2016</div>
+        <h3>Master's Degree in Social Development</h3>
+        <div class="edu-inst">Universidad Panamericana — Guadalajara, Mexico · Professional licence (Cédula) issued by SEP</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2010</div>
+        <h3>Bachelor's Degree in Business Administration</h3>
+        <div class="edu-inst">Universidad Tecnológica de México (UNITEC)</div>
+      </div>
+    </div>
+
+    <h3 class="edu-subhead">Professional Certifications &amp; Continuing Education</h3>
+    <div class="edu-grid">
+      <div class="edu-card cert">
+        <div class="edu-year">2016 · 120 hrs</div>
+        <h3>Project Management &amp; Corporate Image Diploma</h3>
+        <div class="edu-inst">ITESO — Jesuit University of Guadalajara</div>
+      </div>
+      <div class="edu-card cert">
+        <div class="edu-year">2014</div>
+        <h3>GRI Certification — Sustainability Reporting (G4)</h3>
+        <div class="edu-inst">Global Reporting Initiative — Guadalajara</div>
+      </div>
+      <div class="edu-card cert">
+        <div class="edu-year">2024</div>
+        <h3>Commis de Cuisine Professional Training</h3>
+        <div class="edu-inst">Campus de Groisy — Rhône-Alpes, France</div>
+      </div>
+      <div class="edu-card cert">
+        <div class="edu-year">2024</div>
+        <h3>HACCP Certification — Food Safety</h3>
+        <div class="edu-inst">Campus de Groisy — France</div>
+      </div>
+      <div class="edu-card cert">
+        <div class="edu-year">2013</div>
+        <h3>Fundraising Principles for NGOs</h3>
+        <div class="edu-inst">Procura — Mexico</div>
+      </div>
+      <div class="edu-card cert">
+        <div class="edu-year">2013 – 2014</div>
+        <h3>Direction &amp; Social Management of Civil Society Organisations</h3>
+        <div class="edu-inst">Fundación Merced / Fundación Expo Guadalajara · Fundación CMR / HSBC</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ STRENGTHS & LANGUAGES ════ -->
+<div class="page" id="page-strengths">
+  <div class="section-shell">
+    <div class="section-header">
+      <div class="section-eyebrow">Validated by Gallup &amp; Central Test</div>
+      <h2 class="section-title">Strengths &amp; Languages</h2>
+    </div>
+
+    <p class="strengths-intro">My professional profile has been independently assessed through Gallup CliftonStrengths, Central Test's Competency Profile and France Travail's recruitment simulation — consistently highlighting <strong>leadership, communication and relationship-building</strong> as defining strengths.</p>
+
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="num serif">I</div>
+        <h3>Woo</h3>
+        <p>Winning others over — building rapport quickly across cultures</p>
+      </div>
+      <div class="strength-card">
+        <div class="num serif">II</div>
+        <h3>Arranger</h3>
+        <p>Orchestrating people and resources for maximum effect</p>
+      </div>
+      <div class="strength-card">
+        <div class="num serif">III</div>
+        <h3>Belief</h3>
+        <p>Core values that give purpose and consistency to my work</p>
+      </div>
+      <div class="strength-card">
+        <div class="num serif">IV</div>
+        <h3>Communication</h3>
+        <p>Bringing ideas to life through words and presence</p>
+      </div>
+      <div class="strength-card">
+        <div class="num serif">V</div>
+        <h3>Ideation</h3>
+        <p>Finding connections and creative solutions others miss</p>
+      </div>
+    </div>
+
+    <h3 class="edu-subhead">Languages</h3>
+    <div class="lang-row">
+      <div class="lang-card">
+        <h3>Español</h3>
+        <div class="lang-level">Native</div>
+        <div class="lang-bar"><span style="width:100%"></span></div>
+      </div>
+      <div class="lang-card">
+        <h3>Français</h3>
+        <div class="lang-level">Professional — living &amp; working in French</div>
+        <div class="lang-bar"><span style="width:85%"></span></div>
+      </div>
+      <div class="lang-card">
+        <h3>English</h3>
+        <div class="lang-level">C1 — Business English certified (Central Test)</div>
+        <div class="lang-bar"><span style="width:82%"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MY JOURNEY ════ -->
+<div class="page" id="page-journey">
+  <div class="section-shell">
+    <div class="section-header">
+      <div class="section-eyebrow">From Guadalajara to Lake Geneva</div>
+      <h2 class="section-title">My Journey</h2>
+    </div>
+
+    <p class="journey-intro">A career built across <strong>three continents</strong> — coordinating volunteers in Latin America, serving alongside the Missionaries of Charity in Kolkata, supporting missions in Côte d'Ivoire, and today accompanying international students in Switzerland. These are some of the moments that shaped the professional I am.</p>
+
+    <div class="journey-grid">
+      <div class="journey-card wide">
+        <img src="imagen2.png" alt="My journey — moment 1">
+        <div class="journey-caption">Switzerland — international education on the shores of Lake Geneva</div>
+      </div>
+      <div class="journey-card">
+        <img src="imagen3.png" alt="My journey — moment 2">
+        <div class="journey-caption">Good Deeds Day — training 700+ volunteers across three countries</div>
+      </div>
+      <div class="journey-card">
+        <img src="imagen4.png" alt="My journey — moment 3">
+        <div class="journey-caption">Kolkata, India — volunteering with the Missionaries of Charity</div>
+      </div>
+      <div class="journey-card">
+        <img src="imagen5.png" alt="My journey — moment 4">
+        <div class="journey-caption">Women's Leadership Programme — 250+ entrepreneurs in Mexico</div>
+      </div>
+      <div class="journey-card">
+        <img src="imagen6.png" alt="My journey — moment 5">
+        <div class="journey-caption">Côte d'Ivoire — international missions and community service</div>
+      </div>
+      <div class="journey-card wide">
+        <img src="imagen7.png" alt="My journey — moment 6">
+        <div class="journey-caption">Go Share Movement — a network of 65+ NGOs for social change</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CONTACT ════ -->
+<div class="page" id="page-contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow">Let's work together</div>
+    <h2 class="serif">Get in Touch</h2>
+    <p>Based in the canton of Vaud, Switzerland, and available for opportunities in academic coordination, student services and programme management.</p>
+    <div class="contact-lines">
+      <a class="contact-line" href="https://linkedin.com/in/rosyalvarez" target="_blank" rel="noopener">in &nbsp;linkedin.com/in/rosyalvarez</a>
+      <a class="contact-line" href="mailto:your.email@example.com">✉ &nbsp;your.email@example.com</a>
+    </div>
+    <div class="contact-note">Vaud, Switzerland · Swiss Work Permit L · ES / FR / EN</div>
+  </div>
+</div>
+
+<script>
+function goTo(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.querySelectorAll('.nav-center a').forEach(a => a.classList.remove('nav-active'));
+  document.getElementById('nav-' + pageId).classList.add('nav-active');
+}
+
+function showExp(index, el) {
+  document.querySelectorAll('.exp-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.exp-detail-panel').forEach((p, i) => {
+    p.classList.toggle('active', i === index);
+  });
+}
+</script>
+</body>
+</html>
